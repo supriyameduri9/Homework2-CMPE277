@@ -29,7 +29,7 @@
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:gravity="center_horizontal"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="#000000"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
