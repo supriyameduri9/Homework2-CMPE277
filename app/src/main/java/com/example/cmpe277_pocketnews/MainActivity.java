@@ -24,6 +24,7 @@ import com.example.cmpe277_pocketnews.Models.ArticleList;
 import com.example.cmpe277_pocketnews.Models.NewsList;
 import com.example.cmpe277_pocketnews.api.ApiDetails;
 import com.example.cmpe277_pocketnews.api.ApiInterface;
+import com.google.firebase.BuildConfig;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     LayoutInflater inflater;
     FirebaseAuth auth;
 
-    public static final String API_KEY = BuildConfig.ApiKey;
+    public static final String API_KEY = "ec26cfb742464ff5b5900118e7d8481a";
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private List<ArticleList> articles = new ArrayList<>();
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh);
+
         inflater = this.getLayoutInflater();
         reset_alert = new AlertDialog.Builder(this);
         recyclerView = findViewById(R.id.recyclerView);
@@ -61,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setNestedScrollingEnabled(false);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchNews("");
+            }
+        });
         fetchNews("");
     }
 
@@ -68,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
         ApiInterface apiInterface;
         apiInterface = ApiDetails.getApiClient().create(ApiInterface.class);
+
+        swipeRefreshLayout.setRefreshing(true);
 
         String country = getCountry();
       //  swipeRefreshLayout.setRefreshing(true);
@@ -81,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<NewsList> call, Response<NewsList> response) {
                 if (response.isSuccessful() && response.body().getArticle() != null) {
-             //       swipeRefreshLayout.setRefreshing(false);
+                    swipeRefreshLayout.setRefreshing(false);
                     if (!articles.isEmpty()) {
                         articles.clear();
                     }
@@ -95,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<NewsList> call, Throwable t) {
-              //  swipeRefreshLayout.setRefreshing(false) ;
+                swipeRefreshLayout.setRefreshing(false) ;
             }
         });
     }
@@ -143,8 +155,5 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
     }
-
-
-
 
 }

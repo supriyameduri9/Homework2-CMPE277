@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".SplashScreenActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="91dp"
+        android:layout_marginBottom="-91dp"
+        android:gravity="center_horizontal"
+        android:text="POCKET NEWS"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="30dp"
+        android:textStyle="bold|italic" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="311dp"
+        android:layout_height="308dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="59dp"
+        android:layout_marginLeft="59dp"
+        android:layout_marginBottom="252dp"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="news-animation.json"
+        app:lottie_loop="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="177dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="554dp"
+        android:gravity="center_horizontal"
+        android:text="Read the World Today!"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp"
+        android:textStyle="bold|italic" />
+
+
+</RelativeLayout>
