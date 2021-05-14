@@ -1,1 +1,1 @@
-# CMPE--277-PocketNews
+# CMPE--277-Knewzz App
